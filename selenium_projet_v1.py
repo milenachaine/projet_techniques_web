@@ -1,4 +1,5 @@
-#version du cours sans commentaires
+#script d'extraction de données de pages web (titre, url, description) sur Wikipedia
+#version 1 : sortie au format CSV ; ouvre chaque page pour extraire le premier paragraphe
 
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
