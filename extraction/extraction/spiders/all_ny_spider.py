@@ -8,9 +8,9 @@ class ParisItem(scrapy.Item):
     content = scrapy.Field()
 
 class ParisSpider(CrawlSpider):
-    name = 'paris'
+    name = 'ny'
     allowed_domains = ['en.wikipedia.org']
-    start_urls = ['https://en.wikipedia.org/wiki/List_of_museums_in_Paris']
+    start_urls = ['https://en.wikipedia.org/wiki/List_of_museums_in_New_York_City']
     custom_settings = {
         'DEPTH_LIMIT': 2,
     }
@@ -26,4 +26,3 @@ class ParisSpider(CrawlSpider):
         item['title'] = response.xpath('//h1//text()').extract_first()
         item['content'] = ' '.join(response.xpath("//div[@id='bodyContent']//div[@id='mw-content-text']/*/child::p[not(@*)][1]//text()").extract())
         return item
-

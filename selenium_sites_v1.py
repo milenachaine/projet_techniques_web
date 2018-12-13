@@ -1,12 +1,11 @@
 #script d'extraction de données de pages web (titre, url, description) sur Wikipedia
-#version 1 : sortie au format CSV ; ouvre chaque page pour extraire le premier paragraphe
+#version 1 : sortie au format CSV
 
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.firefox.options import Options
-import sqlite3
 
 def afficher_resultat(driver): #affiche résultats page
     titres = driver.find_elements_by_xpath("//tr/td[1]/a")
@@ -20,7 +19,9 @@ def afficher_resultat(driver): #affiche résultats page
             paragraphe_full = paragraphe.text
         finally:
             driver.quit()
-        print("{};{};{};{};".format(ville, titre.text, lien, paragraphe_full), file=fichier)
+        if not paragraphe_full.empty():
+            print("{};{};{};{}".format(ville, titre.text, lien, paragraphe_full.replace(";",":")), file=fichier)
+
 
 def firefox_extraire(url):
     driver = webdriver.Firefox()
@@ -31,9 +32,10 @@ def firefox_extraire(url):
     finally:
         driver.quit()
 
+
 villes = ["Paris", "New York"]
-urls = ["http://en.wikipedia.org/wiki/List_of_museums_in_Paris", "http://en.wikipedia.org/wiki/List_of_museums_and_cultural_institutions_in_New_York_City"]
+urls = ["http://en.wikipedia.org/wiki/List_of_museums_in_Paris", "https://en.wikipedia.org/wiki/List_of_museums_in_New_York_City"]
 with open("sites.csv", "w") as fichier:
-    print("ville;nom;url;desc;", file=fichier)
+    print("ville;nom;url;desc", file=fichier)
     for url, ville in zip(urls,villes):
         firefox_extraire(url)

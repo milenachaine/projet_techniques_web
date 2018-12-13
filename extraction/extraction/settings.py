@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for extraction_vols project
+# Scrapy settings for extraction project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'extraction_vols'
+BOT_NAME = 'extraction'
 
-SPIDER_MODULES = ['extraction_vols.spiders']
-NEWSPIDER_MODULE = 'extraction_vols.spiders'
+SPIDER_MODULES = ['extraction.spiders']
+NEWSPIDER_MODULE = 'extraction.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'extraction_vols (+http://www.yourdomain.com)'
+#USER_AGENT = 'extraction (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'extraction_vols.middlewares.ExtractionVolsSpiderMiddleware': 543,
+#    'extraction.middlewares.ExtractionSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'extraction_vols.middlewares.ExtractionVolsDownloaderMiddleware': 543,
+#    'extraction.middlewares.ExtractionDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'extraction_vols.pipelines.ExtractionVolsPipeline': 300,
+#    'extraction.pipelines.ExtractionPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -88,3 +88,4 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+FEED_EXPORT_ENCODING = 'utf-8'
