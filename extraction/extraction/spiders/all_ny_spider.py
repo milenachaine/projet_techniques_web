@@ -4,8 +4,9 @@ from scrapy.linkextractors import LinkExtractor
 
 class ParisItem(scrapy.Item):
     url = scrapy.Field()
-    title = scrapy.Field()
-    content = scrapy.Field()
+    titre = scrapy.Field()
+    desc = scrapy.Field()
+    ville = scrapy.Field()
 
 class ParisSpider(CrawlSpider):
     name = 'ny'
@@ -23,6 +24,7 @@ class ParisSpider(CrawlSpider):
         self.logger.info('Hi, this is an item page! %s', response.url)
         item = ParisItem()
         item['url'] = response.url
-        item['title'] = response.xpath('//h1//text()').extract_first()
-        item['content'] = ' '.join(response.xpath("//div[@id='bodyContent']//div[@id='mw-content-text']/*/child::p[not(@*)][1]//text()").extract())
+        item['titre'] = response.xpath('//h1//text()').extract_first()
+        item['desc'] = ' '.join(response.xpath("//div[@id='bodyContent']//div[@id='mw-content-text']/*/child::p[not(@*)][1]//text()").extract())
+        item['ville'] = "2"
         return item
